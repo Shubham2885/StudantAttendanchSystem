@@ -35,8 +35,11 @@ public class Dashboard {
 			
 			switch (choice) {
 			case 1:
-					System.out.println("Enter Name");
-					final String name = scanner.next();
+					System.out.println("Enter firstName");
+					final String firstName = scanner.next();
+					
+					System.out.println("Enter firstName");
+					final String lastName = scanner.next();
 					
 					System.out.println("Enter mobile");
 					final String mobile = scanner.next();
@@ -49,7 +52,7 @@ public class Dashboard {
 					
 					System.out.println("Enter stardard");
 					String standard = scanner.next();
-					studentService.addNewStudent(name, mobile, standard);
+					studentService.addNewStudent(firstName, lastName, mobile, standard);
 				break;
 			case 2 : 
 				System.out.println("Enter the standard...");

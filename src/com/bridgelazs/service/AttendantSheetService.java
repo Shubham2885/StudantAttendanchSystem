@@ -21,12 +21,12 @@ public class AttendantSheetService implements IAttendantSheetService {
 	@Override
 	public void takeAttendance(IStudentService studentService, int teacherId, String subject,
 			String standard) {
-		ArrayList<Student> listOfStudent = studentService.showListOfStudent(standard);
+		ArrayList<Student> listOfStudent = null ;studentService.showListOfStudent(standard);
 		
 		for(Student student : listOfStudent) {
 			System.out.println("**************************");
 			System.out.println("Roll No = "+ student.getRollNo());
-			System.out.println("Name = "+ student.getFullName());
+			System.out.println("Name = "+ student.getFirstName() + " "+ student.getLastName());
 			
 			String status = ScannerUtil.getString("Status...");
 			

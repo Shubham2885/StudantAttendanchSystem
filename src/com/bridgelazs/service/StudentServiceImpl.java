@@ -1,37 +1,40 @@
 package com.bridgelazs.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.bridgelazs.entity.Student;
 import com.bridgelazs.interfaces.IStudentService;
+import com.bridgelazs.persistance.IStudentRepository;
+import com.bridgelazs.persistance.StudentRepository;
 
 public class StudentServiceImpl implements IStudentService {
 
-	private ArrayList<Student> listOfStudent;
+	private IStudentRepository studentRepository;
 	
 	public StudentServiceImpl() {
-		listOfStudent = new ArrayList<Student>();
+		studentRepository = new StudentRepository();
 	}
 	
 	@Override
-	public void addNewStudent(String name, String mobile, String standard) {
+	public void addNewStudent(String firstName, String lastName, String mobile, String standard) {
 
 		Student student = new Student();
-		student.setRollNo(listOfStudent.size()+1);
-		student.setFullName(name);
+		student.setFirstName(firstName);
+		student.setLastName(lastName);
 		student.setMobileNo(mobile);
 		student.setStandard(standard);
 		
-		listOfStudent.add(student);
+		studentRepository.save(student);
 	}
 
 	@Override
-	public ArrayList<Student> showListOfStudent(String standard) {
+	public List<Student> showListOfStudent(String standard) {
+		final List<Student> listOfStudent = studentRepository.getAllStudents();
 		for(Student student : listOfStudent) {
-			if(standard.equals(student.getStandard())) {
+			if(standard.compareTo(student.getStandard()) == 0) {
 				System.out.println("**********************************");
 				System.out.println("Roll No : "+student.getRollNo());
-				System.out.println("Full Name : "+student.getFullName());
+				System.out.println("Full Name : "+student.getFirstName() + " "+student.getLastName());
 				System.out.println("Mobile No : "+student.getMobileNo());
 				System.out.println("Standard : "+student.getStandard());
 			}
